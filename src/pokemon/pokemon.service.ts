@@ -22,9 +22,7 @@ export class PokemonService {
       return pokemon;
       
     } catch (error) {
-      console.log (error);
-      if(error.code === 11000) throw new BadRequestException(`Duplicate pokemon in db ${JSON.stringify(error.keyValue)}`);
-      throw new InternalServerErrorException('Can´t create Pokemon, check server log');
+      this.exceptionHandler(error);
     };
   }
 
@@ -59,14 +57,23 @@ export class PokemonService {
       return {...pokemon.toJSON(), ...updatePokemonDto};
       
     } catch (error) {
-      console.log("Duplicate key in db");
-      console.log (error);
-      if(error.code === 11000) throw new BadRequestException(`Can´t update Pokemon, duplicate in db ${JSON.stringify(error.keyValue)}`);
-      throw new InternalServerErrorException('Can´t update Pokemon, check server log');
+      this.exceptionHandler(error);
+      
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+  async remove(id: string) {
+
+    const { deletedCount }= await this.pokemonModel.deleteOne({_id: id});
+    if(deletedCount=== 0) throw new BadRequestException("No item to delete");
+    return;
   }
+
+  private exceptionHandler(error: any) {
+
+    console.log (error);
+    if(error.code === 11000) throw new BadRequestException(`Duplicate in db ${JSON.stringify(error.keyValue)}`);
+    throw new InternalServerErrorException('Can´t take action, check server log');
+  }
+
 }
