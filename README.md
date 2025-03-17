@@ -68,6 +68,11 @@ If you are looking for a cloud-based platform to deploy your NestJS application,
 $ yarn install -g mau
 $ mau deploy
 ```
+## Build DataBase for development
+## CAUTION, this deletes de DB first
+```
+http://localhost:3000/api/v2/seed
+```
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
