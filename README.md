@@ -69,12 +69,19 @@ $ yarn install -g mau
 $ mau deploy
 ```
 ## Build DataBase for development
-usar docker compose con docker-compose.yaml
+
+```bash
+$ docker compose up -d
+```
+usar docker compose con docker-compose.yaml y env por default (.env)
 
 ## Contenerizar para prd
-docker compose -f docker-compose.prd.yaml --env-file .env.prd up --build
 
-Esto usa el compose y las env de prd
+```bash
+$ docker compose -f docker-compose.prd.yaml --env-file .env.prd up --build
+```
+
+Esto usa el compose y las env de prd (docker-compose.prd.yaml y .env.prd)
 
 ## CAUTION, this deletes de DB first
 ```
