@@ -69,6 +69,13 @@ $ yarn install -g mau
 $ mau deploy
 ```
 ## Build DataBase for development
+usar docker compose con docker-compose.yaml
+
+## Contenerizar para prd
+docker compose -f docker-compose.prd.yaml --env-file .env.prd up --build
+
+Esto usa el compose y las env de prd
+
 ## CAUTION, this deletes de DB first
 ```
 http://localhost:3000/api/v2/seed

@@ -1,4 +1,4 @@
-import Joi, * as Joy from "joi";
+import * as Joi from "joi";
 
 
 export const JoiValidationSchema = Joi.object({
